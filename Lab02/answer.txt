@@ -1,7 +1,9 @@
 * Question: If you create a constructor method to build a DVD by title then create a constructor method to build a DVD by category. Does JAVA allow you to do this?
      Có, Java cho phép làm điều này vì Java hỗ trợ nạp chồng (overloading) phương thức khởi tạo (constructor overloading).
+Tức là mình có thể tạo nhiều constructor trong cùng một lớp, miễn là chúng có danh sách tham số khác nhau.
 
 * Question: Is JAVA a Pass by Value or a Pass by Reference programming language?
+Trả lời:
      Java luôn là ngôn ngữ Pass by Value. Điều này có nghĩa là khi bạn truyền một biến vào một phương thức, Java sẽ truyền một bản sao của giá trị của biến đó, chứ không phải tham chiếu trực tiếp đến biến gốc.
 
 * Question: After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two objects still remain?
