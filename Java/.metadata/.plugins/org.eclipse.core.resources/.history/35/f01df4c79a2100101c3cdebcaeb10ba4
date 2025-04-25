@@ -1,0 +1,8 @@
+package hust.soict.hedspi.test.cart;
+
+public class CartTest {
+	public static void main(String[] args) {
+		Cart cart = new Cart();
+		DigitalVideoDisc dvd1 = new DigitalVideoDisc()
+	}
+}

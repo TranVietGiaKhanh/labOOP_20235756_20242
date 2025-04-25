@@ -1,0 +1,18 @@
+package hust.soict.hedspi.aims.media;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CompactDisc extends Disc{
+	private String artist;
+	private List<Track> tracks = new ArrayList<>();
+
+	public CompactDisc(int id, String title, String category, float cost, String director, int length) {
+		super(id, title, category, cost, director, length);
+	}
+	public CompactDisc(int id, String title, String category, String director, int length, float cost,
+            ArrayList<Track> tracks) {
+		super(title, category, director, 0, cost);
+		this.artist = artist;
+		this.tracks = tracks;
+	}
+}

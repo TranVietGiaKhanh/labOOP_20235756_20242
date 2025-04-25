@@ -1,0 +1,8 @@
+package hust.soict.hedspi.aims.store;
+import java.util.List
+public class Store {
+	private List<Media> itemInStore = new Arraylist<>();
+		if(itemInStore.contains(media)) {
+			System.out.println("Media "+media)
+		}
+}
