@@ -1,0 +1,50 @@
+package hust.soict.hedspi.aims.media;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CompactDisc extends Disc implements Playable{
+	private String artist;
+	private List<Track> tracks = new ArrayList<>();
+	
+	public CompactDisc(int id, String title, String category, float cost, String director, int length, String artist,
+			List<Track> tracks) {
+		super(id, title, category, cost, director, length);
+		this.artist = artist;
+		this.tracks = tracks;
+	}
+	public String getArtist() {
+		return artist;
+	}
+	public List<Track> getTracks() {
+		return tracks;
+	}
+	public void addTrack(Track track) {
+		if(tracks.contains(track)) {
+			System.out.println("Track "+track.getTitle() +"is already exist");
+		}else {
+			tracks.add(track);
+			System.out.print("Track "+ track.getTitle()+"is added to CD");
+		}
+	}
+	public void removeTrack(Track track) {
+		if(tracks.remove(track)) {
+			System.out.println("Track "+track.getTitle()+"is removed from the CD");
+		}else {
+			System.out.println("Not found this track in CD");
+		}
+	}
+	public int getLength() {
+        int totalLength = 0;
+        for (Track track : tracks) {
+            totalLength += track.getLength();
+        }
+        return totalLength;
+    }
+	public void play() { 
+		System.out.println("Playing DVD: " + this.getTitle()); 
+		System.out.println("Artist: " + this.getArtist()); 
+		for(Track track: tracks) {
+			track.play();
+		}
+	} 
+}

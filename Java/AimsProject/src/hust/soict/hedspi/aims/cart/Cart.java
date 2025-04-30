@@ -4,6 +4,7 @@ import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.media.Media;
 
 import java.util.ArrayList;
+import java.util.Collections;
 public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 20;
 	private ArrayList<Media> itemsOrdered = new ArrayList<>();
@@ -49,6 +50,13 @@ public class Cart {
 		System.out.println("Total cost: "+totalCost()+"$");
 		System.out.println("*********************************************************");
 	}
+	public void sortMediaByTitleCost() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+    }
+
+    public void sortMediaByCostTitle() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+    }
 	public ArrayList<Media> getItemsOrdered() {
         return itemsOrdered;
     }
@@ -75,6 +83,25 @@ public class Cart {
 	            System.out.println("No found");
 	        }
 	        return null;
+	    }
+	    public ArrayList<Media> searchAllByTitle(String title) {
+	        ArrayList<Media> results = new ArrayList<>();
+	        boolean found = false;
+	        for (Media media : itemsOrdered) {
+	            if (media.getTitle().toLowerCase().contains(title.toLowerCase())) {
+	                System.out.println("Found Media containing Title: " + media.toString());
+	                results.add(media);
+	                found = true;
+	            }
+	        }
+	        if (!found) {
+	            System.out.println("No media found with title containing: " + title);
+	        }
+	        return results;
+	    }
+	    public void emptyCart() {
+	        itemsOrdered.clear();
+	        System.out.println("The cart has been emptied.");
 	    }
 
 }

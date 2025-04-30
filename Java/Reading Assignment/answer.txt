@@ -1,11 +1,71 @@
-Q1. What class should implement the Comparable interface?
-The Media class should implement the Comparable interface because it is the base class for all media items like DVDs, books, and CDs. This allows all subclasses to inherit a default comparison behavior that can be used for sorting or ordering operations.
+AWT (Abstract Window Toolkit) and Swing are both Java libraries for creating graphical user interfaces (GUIs), but they have significant differences in architecture, capabilities, and performance.
 
-Q2. In those classes, how should you implement the compareTo() method to reflect the ordering that we want?
-In the Media class, the compareTo() method should define a default ordering. A common approach is to compare items first by their title (alphabetically), and if the titles are the same, then by their cost (in ascending order). This ensures a consistent and logical natural order across all media types.
+Key Differences
+1. Architecture
+AWT: Uses native platform components (heavyweight)
 
-Q3. Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
-No, the Comparable interface only allows for one natural ordering. If you need multiple ways to sort the items (such as by title then cost in one case, and by cost then title in another), you must use additional Comparator implementations. These provide alternative sorting logic without changing the default behavior defined in compareTo().
+Directly calls the operating system's native GUI components
 
-Q4. Suppose the DVDs have a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
-To support a different ordering rule for DVDs, you can override the compareTo() method specifically in the DVD class. This allows DVDs to use a custom comparison logic (such as by title, then by decreasing length, then by cost) while other media types continue to use the default ordering defined in the Media class. Alternatively, you can create a separate Comparator for DVDs and use it only when sorting lists of DVDs.
+Components are "heavyweight" (native peer components)
+
+Swing: Implements its own components (lightweight)
+
+Paints its own components using Java 2D
+
+Components are "lightweight" (no native peers)
+
+2. Look and Feel
+AWT: Always matches the native platform appearance
+
+Limited customization options
+
+Looks different across platforms
+
+Swing: Pluggable look and feel
+
+Can emulate native look or use Java's Metal look
+
+Consistent appearance across platforms
+
+Customizable themes
+
+3. Component Set
+AWT: Basic components (Button, Label, TextField, etc.)
+
+Limited to common components available on all platforms
+
+Swing: Extended component set (JTable, JTree, JTabbedPane, etc.)
+
+More sophisticated components
+
+Can extend and customize components easily
+
+4. Performance
+AWT: Generally faster for simple GUIs
+
+Native components are rendered by the OS
+
+Swing: Can be slower for complex GUIs
+
+Pure Java rendering overhead
+
+Performance improved with hardware acceleration
+
+5. Features
+AWT:
+
+Limited graphics capabilities
+
+No built-in double buffering
+
+Basic event handling
+
+Swing:
+
+Advanced graphics support
+
+Built-in double buffering
+
+Enhanced event handling
+
+MVC architecture for many components

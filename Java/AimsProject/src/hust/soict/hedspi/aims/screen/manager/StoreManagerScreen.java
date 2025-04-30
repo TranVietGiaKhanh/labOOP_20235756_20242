@@ -1,0 +1,87 @@
+package hust.soict.hedspi.aims.screen.manager;
+import hust.soict.hedspi.aims.media.*;
+import hust.soict.hedspi.aims.store.*;
+import java.awt.*;
+import javax.swing.*;
+import java.util.ArrayList;
+
+public class StoreManagerScreen extends JFrame{
+	private Store store;
+	public StoreManagerScreen(Store store) {
+        this.store = store;
+        Container cp = getContentPane();
+        cp.setLayout(new BorderLayout());
+        cp.add(createNorth(), BorderLayout.NORTH);
+        cp.add(createCenter(), BorderLayout.CENTER);
+        
+        setTitle("Store");
+        setSize(1024, 768);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+	private JPanel createNorth() {
+        JPanel north = new JPanel();
+        north.setLayout(new BoxLayout(north, BoxLayout.Y_AXIS));
+        north.add(createMenuBar());
+        north.add(createHeader());
+        return north;
+    }
+	 private JMenuBar createMenuBar() {
+	        JMenu menu = new JMenu("Options");
+
+	        JMenu smUpdate = new JMenu("Update Store");
+	        JMenuItem mAddBook = new JMenuItem("Add Book");
+	        mAddBook.addActionListener(e -> { new AddBookToStoreScreen(store); this.dispose(); });
+	        smUpdate.add(mAddBook);
+
+	        JMenuItem mAddCD = new JMenuItem("Add CD");
+	        mAddCD.addActionListener(e -> { new AddCompactDiscToStoreScreen(store); this.dispose(); });
+	        smUpdate.add(mAddCD);
+
+	        JMenuItem mAddDVD = new JMenuItem("Add DVD");
+	        mAddDVD.addActionListener(e -> { new AddDigitalVideoDiscToStoreScreen(store); this.dispose(); });
+	        smUpdate.add(mAddDVD);
+
+	        menu.add(smUpdate);
+
+	        JMenuItem mView = new JMenuItem("View Store");
+	        mView.addActionListener(e -> { new StoreManagerScreen(store); this.dispose(); });
+	        menu.add(mView);
+
+	        JMenuBar mb = new JMenuBar();
+	        mb.setLayout(new FlowLayout(FlowLayout.LEFT));
+	        mb.add(menu);
+	        return mb;
+	    }
+
+	    private JPanel createHeader() {
+	        JPanel header = new JPanel();
+	        header.setLayout(new BoxLayout(header, BoxLayout.X_AXIS));
+	        JLabel title = new JLabel("AIMS");
+	        title.setFont(new Font(title.getFont().getName(), Font.PLAIN, 50));
+	        title.setForeground(Color.CYAN);
+	        header.add(Box.createRigidArea(new Dimension(10, 10)));
+	        header.add(title);
+	        header.add(Box.createHorizontalGlue());
+	        return header;
+	    }
+
+	    private JPanel createCenter() {
+	        JPanel center = new JPanel(new GridLayout(3, 3, 2, 2));
+	        ArrayList<Media> list = store.getItemsInStore();
+	        for (Media m : list) {
+	            MediaStore cell = new MediaStore(m);
+	            center.add(cell);
+	        }
+	        return center;
+	    }
+
+	    public static void main(String[] args) {
+	        Store store = new Store();
+	        store.addMedia(new DigitalVideoDisc("The Lion King", "Animation", "Disney", 87, 19.95f));
+	        store.addMedia(new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f));
+	        store.addMedia(new DigitalVideoDisc("Aladdin", "Animation", "Disney", 90, 18.99f));
+	        new StoreManagerScreen(store);
+	    }
+}

@@ -1,0 +1,47 @@
+package hust.soict.hedspi.aims.screen.manager;
+import hust.soict.hedspi.aims.store.Store;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen{
+	private JTextField tfDirector, tfArtist;
+
+    public AddCompactDiscToStoreScreen(Store store) {
+        super(store);
+        setTitle("Add CD");
+        setSize(400, 300);
+        setVisible(true);
+    }
+
+    @Override
+    protected JPanel createForm() {
+        JPanel form = new JPanel(new GridLayout(6, 2, 5, 5));
+        form.add(new JLabel("ID:"));       form.add(tfID       = new JTextField());
+        form.add(new JLabel("Title:"));    form.add(tfTitle    = new JTextField());
+        form.add(new JLabel("Category:")); form.add(tfCategory = new JTextField());
+        form.add(new JLabel("Cost:"));     form.add(tfCost     = new JTextField());
+        form.add(new JLabel("Director:")); form.add(tfDirector = new JTextField());
+        form.add(new JLabel("Artist:"));   form.add(tfArtist   = new JTextField());
+
+        btnAdd = new JButton("Add");
+        btnAdd.addActionListener(e -> {
+            CompactDisc cd = new CompactDisc(
+                tfTitle.getText(),
+                tfCategory.getText(),
+                tfDirector.getText(),
+                Float.parseFloat(tfCost.getText()),
+                tfArtist.getText()
+            );
+            store.addMedia(cd);
+            JOptionPane.showMessageDialog(this, "CD added!");
+        });
+
+        JPanel wrapper = new JPanel(new BorderLayout());
+        wrapper.add(form, BorderLayout.CENTER);
+        JPanel south = new JPanel();
+        south.add(btnAdd);
+        wrapper.add(south, BorderLayout.SOUTH);
+        return wrapper;
+    }
+}

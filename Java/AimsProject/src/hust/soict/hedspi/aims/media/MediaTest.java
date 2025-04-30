@@ -1,17 +1,26 @@
 package hust.soict.hedspi.aims.media;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MediaTest {
-	ArrayList<Media> mediae = new ArrayList<>();
-	Book book = new Book(1, "no home", "Education", 4.5f, null);
-    Media dvd = new DigitalVideoDisc("The lion king", "Animation", "Roger Allers", 87, 19.95f);
-    Track track = new Track("Freedom Tower", (int) 25f);
+	public static void main(String[] args) {
+	List<Media> mediaList = new ArrayList<>();
 
-    mediae.add(book);
-    mediae.add(dvd);
-    mediae.add(track);
+    DigitalVideoDisc dvd = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
+    mediaList.add(dvd);
 
-    for (Media media : mediae) {
-        System.out.println(media.toString());
+    Book book = new Book("The Hobbit", "Fantasy", 15.99f);
+    book.addAuthor("J.R.R. Tolkien");
+    mediaList.add(book);
+
+    CompactDisc cd = new CompactDisc(1,"Thriller", "Pop", "Quincy Jones", "Michael Jackson");
+    cd.addTrack(new Track("Wanna Be Startin' Somethin'", 362));
+    cd.addTrack(new Track("Thriller", 357));
+    mediaList.add(cd);
+
+    System.out.println("=== Danh sach media ===");
+    for (Media m : mediaList) {
+        System.out.println(m);  
     }
+	}
 }

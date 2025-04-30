@@ -47,7 +47,7 @@ public class Aims {
         DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
         DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Sci-fi", "George Lucas", 121, 24.95f);
         DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin", "Animation", "Guy Ritchie", 128, 18.99f);
-        CompactDisc cd1 = new CompactDisc("The Golden", "Jazz", "Borcaleo", "Louis Samatha", 22.95f);
+        CompactDisc cd1 = new CompactDisc("The Golden", "Jazz", 22.95f, "Louis Samatha", "Borcaleo");
         Track t1 = new Track("Animals", 127);
         Track t2 = new Track("Falling Down", 211);
         cd1.addTrack(t1); cd1.addTrack(t2);

@@ -1,0 +1,10 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
+module AimsProject {
+	requires java.desktop;
+	requires AimsProject;
+}

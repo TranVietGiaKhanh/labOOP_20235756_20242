@@ -11,7 +11,7 @@ public class CartTest {
         Book book1 = new Book("Introduction to Java", "Programming", 20.5f);
         book1.addAuthor("John Doe");
         cart.addMedia(book1);
-        CompactDisc cd1 = new CompactDisc("Greatest Hits", "Pop", "Artist Name", "Director Name", 30.0f);
+        CompactDisc cd1 = new CompactDisc(12,"Greatest Hits", "Artist Name","Director Name","John David");
         cart.addMedia(cd1);
         System.out.println("--- Testing print() method ---");
         cart.print();

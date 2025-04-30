@@ -1,0 +1,46 @@
+package hust.soict.hedspi.aims.screen.manager;
+import hust.soict.hedspi.aims.media.Book;
+import hust.soict.hedspi.aims.store.Store;
+import javax.swing.*;
+
+public class AddBookToStoreScreen {
+	private JTextField tfAuthors;
+
+    public AddBookToStoreScreen(Store store) {
+        super(store);
+        setTitle("Add Book");
+        setSize(400, 250);
+        setVisible(true);
+    }
+
+    @Override
+    protected JPanel createForm() {
+        JPanel form = new JPanel(new GridLayout(5, 2, 5, 5));
+        form.add(new JLabel("ID:"));       form.add(tfID       = new JTextField());
+        form.add(new JLabel("Title:"));    form.add(tfTitle    = new JTextField());
+        form.add(new JLabel("Category:")); form.add(tfCategory = new JTextField());
+        form.add(new JLabel("Cost:"));     form.add(tfCost     = new JTextField());
+        form.add(new JLabel("Authors:"));  form.add(tfAuthors  = new JTextField());
+
+        btnAdd = new JButton("Add");
+        btnAdd.addActionListener(e -> {
+            Book b = new Book(
+                tfTitle.getText(),
+                tfCategory.getText(),
+                Float.parseFloat(tfCost.getText())
+            );
+            for (String a : tfAuthors.getText().split(",")) {
+                b.addAuthor(a.trim());
+            }
+            store.addMedia(b);
+            JOptionPane.showMessageDialog(this, "Book added!");
+        });
+
+        JPanel wrapper = new JPanel(new BorderLayout());
+        wrapper.add(form, BorderLayout.CENTER);
+        JPanel south = new JPanel();
+        south.add(btnAdd);
+        wrapper.add(south, BorderLayout.SOUTH);
+        return wrapper;
+    }
+}
