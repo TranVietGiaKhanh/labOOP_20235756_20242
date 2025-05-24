@@ -1,0 +1,21 @@
+package hust.soict.hedspi.test.cart;
+import hust.soict.hedspi.aims.cart.Cart;
+import hust.soict.hedspi.aims.media.*;
+
+public class CartTest {
+    public static void main(String[] args) {
+        Cart cart = new Cart();
+
+        DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
+        cart.addMedia(dvd1);
+        Book book1 = new Book("Introduction to Java", "Programming", 20.5f);
+        book1.addAuthor("John Doe");
+        cart.addMedia(book1);
+        CompactDisc cd1 = new CompactDisc(12,"Greatest Hits", "Artist Name","Director Name","John David");
+        cart.addMedia(cd1);
+        System.out.println("--- Testing print() method ---");
+        cart.print();
+        cart.searchByID(23);
+        cart.searchByTitle("o");
+    }
+}
